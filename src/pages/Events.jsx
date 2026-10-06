@@ -30,6 +30,15 @@ export default function Events() {
     return false
   })
 
+  // Always start at top. Prevents arriving from bottom of previous page while
+  // desktop mode locks vertical scroll (overflow hidden), which would otherwise
+  // leave the top of the strip "covered" and content stuck near the footer.
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.scrollTo(0, 0)
+    }
+  }, [])
+
   const updateActiveFromPosition = useCallback(() => {
     const strip = stripRef.current
     const stageEl = stageRef.current
@@ -90,6 +99,9 @@ export default function Events() {
     const stage = stageRef.current
     if (!strip || !stage) return
 
+    // Ensure we are at true top before locking (handles any late reflow or nav timing)
+    window.scrollTo(0, 0)
+
     // Prevent any vertical page movement
     const prevOverflow = document.documentElement.style.overflow
     document.documentElement.style.overflow = 'hidden'
@@ -98,7 +110,14 @@ export default function Events() {
       maxXRef.current = -(strip.scrollWidth - stage.offsetWidth + 100)
     }
     updateMax()
-    window.addEventListener('resize', updateMax)
+
+    const handleResize = () => {
+      updateMax()
+      // Re-apply current x after resize so transformed strip + children heights reflow correctly
+      // (ensures images using calc(100% ...) or h-full resize properly when y changes)
+      gsap.set(strip, { x: currentXRef.current })
+    }
+    window.addEventListener('resize', handleResize)
 
     // Wheel controls horizontal only. No page scroll. Supports left/right (deltaX) swipes too.
     const handleWheel = (e) => {
@@ -199,7 +218,7 @@ export default function Events() {
 
     return () => {
       document.documentElement.style.overflow = prevOverflow
-      window.removeEventListener('resize', updateMax)
+      window.removeEventListener('resize', handleResize)
       stage.removeEventListener('wheel', handleWheel)
       stage.removeEventListener('pointerdown', onPointerDown)
       stage.removeEventListener('pointermove', onPointerMove)
@@ -327,6 +346,7 @@ export default function Events() {
                         if (el) yearRefs.current[slide.id] = el
                       }}
                       className={`flex-shrink-0 w-[min(46vw,460px)] h-full flex items-center ${isFirst ? 'justify-start' : 'justify-center ml-16 md:ml-24'} select-none`}
+                      style={{ minHeight: 120 }}
                     >
                       <div className="pl-4 md:pl-8 text-[58px] md:text-[72px] font-semibold tracking-[-3.5px] leading-[0.86] text-[#09346A]">
                         {slide.year.split('–').map((p, i) => (
@@ -337,14 +357,15 @@ export default function Events() {
                   )
                 }
 
-                // Event block: big picture (flex-1), tiny caption below, everything fits
+                // Event block: controlled image height, group pushed to bottom to stick near linebar
                 return (
                   <div
                     key={slide.slug}
-                    className="flex-shrink-0 w-[min(92vw,920px)] h-full flex flex-col"
+                    className="flex-shrink-0 w-[min(92vw,920px)] h-full flex flex-col justify-end"
+                    style={{ minHeight: 140 }}
                   >
-                    <Link to={`/events/${slide.slug}`} className="block group flex-1 flex flex-col min-h-0">
-                      <div className="relative overflow-hidden rounded-xl shadow-sm" style={{ height: 'min(70vh, 670px)' }}>                    
+                    <Link to={`/events/${slide.slug}`} className="block group">
+                      <div className="relative overflow-hidden rounded-xl shadow-sm" style={{ height: 'min(65vh, 560px)' }}>
                         <img
                           src={slide.img}
                           alt={slide.title}
@@ -352,7 +373,7 @@ export default function Events() {
                         />
                        </div>
 
-                      <div className="mt-1 pl-1 min-h-[42px] flex-shrink-0">
+                      <div className="mt-1 pl-1 min-h-[42px]">
 <div className="text-[13px] font-semibold tracking-[-0.2px] leading-tight transition-all duration-200 group-hover:underline group-hover:decoration-1 group-hover:underline-offset-1 group-hover:font-bold">
                            {slide.title}
                          </div>
