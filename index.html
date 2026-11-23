@@ -1,39 +1,1555 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="referrer" content="origin" />
-    <meta name="author" content="ACE UTSC" />
-    <meta name="theme-color" content="#09346A" />
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026 MTA Data Analytics Case Competition &amp; Formula 1 and Las Vegas Grand Prix</title>
+  <meta name="description" content="Pick any three drivers. The predicted point-to-cost ratio is their projected Las Vegas GP points divided by their total price.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500;600&family=Titillium+Web:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231c2a16'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='16' font-family='sans-serif' fill='%23d6ee6a'%3E3%3C/text%3E%3C/svg%3E">
+  <style>
+    @font-face {
+      font-family: "Titillium";
+      src: local("Titillium"), local("Titillium Bold"), local("Titillium-Bold"), url("https://fonts.gstatic.com/s/titilliumweb/v19/NaPDcZTIAOhVxoMyOr9n_E7ffHjDGIVzY4SY.woff2") format("woff2");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
 
-    <title>ACE UTSC - Academy for emerging leaders.</title>
-    <meta name="description" content="ACE UTSC is the University of Toronto Scarborough’s chapter for the largest undergraduate case competition in Canada. We are dedicated to offering real world practice for students. Our mission is to transform classroom knowledge into practical expertise and empowering students to strengthen their skills and get ready for the real world." />
-    <meta name="keywords" content="utsc, university of toronto, university of toronto scarborough, ACE UTSC, ACE, ace nationals, management, utsc management, utsc case competition, case competition, consulting, finance, leadership, student club, toronto" />
+    @font-face {
+      font-family: "Titillium";
+      src: local("Titillium"), local("Titillium Bold"), local("Titillium-Bold"), url("https://fonts.gstatic.com/s/titilliumweb/v19/NaPDcZTIAOhVxoMyOr9n_E7ffHjDGItzYw.woff2") format("woff2");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
 
-    <!-- Icons -->
-    <link rel="icon" type="image/png" href="/img/icon/ACEUTSC.png" />
-    <link rel="shortcut icon" href="/img/icon/ACEUTSC.png" />
-    <link rel="apple-touch-icon" href="/img/icon/ACEUTSC.png" /> 
+    :root {
+      --bg: oklch(0.12 0.012 285);
+      --surface: oklch(0.17 0.016 285);
+      --surface-2: oklch(0.23 0.020 285);
+      --line: oklch(0.34 0.022 285);
+      --ink: oklch(0.98 0.004 285);
+      --muted: oklch(0.76 0.014 285);
+      --primary: oklch(0.68 0.26 342);
+      --primary-deep: oklch(0.38 0.18 342);
+      --seat-a: oklch(0.58 0.25 26);
+      --seat-b: oklch(0.76 0.17 82);
+      --seat-c: oklch(0.76 0.16 192);
+      --bar-a: oklch(0.65 0.26 26);
+      --bar-b: oklch(0.83 0.18 82);
+      --bar-c: oklch(0.83 0.17 192);
+      --slip: oklch(0.97 0.008 85);
+      --slip-ink: oklch(0.16 0.015 285);
+      --slip-muted: oklch(0.42 0.018 285);
+      --slip-line: oklch(0.86 0.012 85);
+      --neg: oklch(0.58 0.25 26);
+      --font: "Titillium Web", "Segoe UI", sans-serif;
+      --display: "Titillium", "Titillium Web", sans-serif;
+      --mono: "Azeret Mono", ui-monospace, "SFMono-Regular", monospace;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="ACE UTSC - Academy for emerging leaders." />
-    <meta property="og:description" content="ACE UTSC is the University of Toronto Scarborough’s chapter for the largest undergraduate case competition in Canada. We are dedicated to offering real world practice for students. Our mission is to transform classroom knowledge into practical expertise and empowering students to strengthen their skills and get ready for the real world." />
-    <meta property="og:image" content="https://lll-cl13.github.io/img/icon/ACEUTSC.png" />
-    <meta property="og:url" content="https://lll-cl13.github.io" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="ACE UTSC - Academy for emerging leaders." />
+    html { scroll-behavior: smooth; }
 
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="ACE UTSC - Academy for emerging leaders." />
-    <meta name="twitter:description" content="ACE UTSC is the University of Toronto Scarborough’s chapter for the largest undergraduate case competition in Canada." />
-    <meta name="twitter:image" content="https://lll-cl13.github.io/img/icon/ACEUTSC.png" />
+    body {
+      margin: 0;
+      border-top: 6px solid var(--primary);
+      background:
+        radial-gradient(900px 520px at 100% -8%, oklch(0.40 0.07 128 / 0.55), transparent 62%),
+        var(--bg);
+      color: var(--ink);
+      font-family: var(--font);
+      font-weight: 400;
+      font-size: 1.05rem;
+      line-height: 1.5;
+      text-rendering: optimizeLegibility;
+    }
 
-    <!-- Fonts are self-hosted from /public/fonts -->
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+    button, input { font: inherit; color: inherit; }
+
+    :focus { outline: none; }
+    :focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+
+    ::selection {
+      background: oklch(0.86 0.12 128);
+      color: oklch(0.2 0.04 130);
+    }
+
+    .wrap {
+      width: min(1120px, calc(100vw - 2rem));
+      margin-inline: auto;
+    }
+
+    header.top {
+      padding: clamp(1.75rem, 4vw, 3.25rem) 0 1.25rem;
+    }
+
+    .title-lockup {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.15rem;
+      margin: 0 0 1.6rem;
+    }
+
+    .title-logo {
+      display: block;
+      width: min(340px, 78vw);
+      height: auto;
+    }
+
+    .page-title {
+      margin: 0;
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: clamp(2.05rem, 4.6vw, 3.35rem);
+      line-height: 0.98;
+      letter-spacing: -0.02em;
+    }
+
+    .page-title-main {
+      display: block;
+      max-width: 20ch;
+      text-wrap: balance;
+    }
+
+    .page-title-event {
+      display: block;
+      max-width: 80ch;
+      margin-top: 0.7rem;
+      font-size: 0.42em;
+      line-height: 1.25;
+      letter-spacing: 0;
+      color: var(--primary);
+      text-wrap: balance;
+    }
+
+    .task {
+      margin: 0;
+      max-width: min(18ch, 100%);
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: clamp(1.55rem, 3vw, 2.15rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+    }
+
+    .task em {
+      font-style: normal;
+      color: var(--primary);
+    }
+
+    .lede {
+      max-width: min(62ch, 100%);
+      margin: 1rem 0 0;
+      color: var(--muted);
+      font-size: 1.08rem;
+      text-wrap: pretty;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, 400px);
+      gap: clamp(1.25rem, 3vw, 2.75rem);
+      align-items: start;
+      padding-bottom: 3rem;
+    }
+
+    .tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 0.75rem;
+      align-items: center;
+      margin-bottom: 0.7rem;
+    }
+
+    .search {
+      flex: 1 1 12rem;
+      min-width: 0;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.55rem 0.9rem;
+      color: var(--ink);
+    }
+
+    .search::placeholder { color: var(--muted); opacity: 1; }
+
+    .sort {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .sort-item {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+    }
+
+    .sort-key {
+      background: transparent;
+      border: 0;
+      border-radius: 999px 0 0 999px;
+      padding: 0.35rem 0.35rem 0.35rem 0.75rem;
+      color: var(--muted);
+      cursor: pointer;
+      min-height: 2.6rem;
+    }
+
+    .sort-key:hover { color: var(--ink); }
+
+    .sort-flip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.28rem;
+      margin: 0.18rem 0.18rem 0.18rem 0.2rem;
+      padding: 0.2rem 0.55rem 0.2rem 0.4rem;
+      min-width: 5.1rem;
+      min-height: 2.15rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--bg);
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .sort-flip:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .sort-item.is-on {
+      background: var(--primary-deep);
+      border-color: transparent;
+    }
+
+    .sort-item.is-on .sort-key { color: white; }
+
+    .sort-item.is-on .sort-flip {
+      background: var(--primary);
+      border-color: transparent;
+      color: oklch(0.2 0.04 130);
+    }
+
+    .sort-item.is-on .sort-flip:hover {
+      background: oklch(0.9 0.14 128);
+      color: oklch(0.18 0.04 130);
+    }
+
+    .sort-flip .arrow {
+      display: block;
+      width: 18px;
+      height: 18px;
+      flex: 0 0 18px;
+      transition: transform 160ms var(--ease);
+    }
+
+    .sort-flip .arrow path {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .sort-flip[data-dir="desc"] .arrow { transform: rotate(180deg); }
+    .sort-flip[data-flip="name"][data-dir="asc"] .arrow { transform: rotate(180deg); }
+    .sort-flip[data-flip="name"][data-dir="desc"] .arrow { transform: none; }
+
+    .flip-word {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .hint {
+      margin: 0 0 0.85rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 68ch;
+    }
+
+    .list-status {
+      margin: 0 0 0.35rem;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .drivers { display: flex; flex-direction: column; }
+
+    .section-title {
+      margin: 0 0 0.75rem;
+      font-family: var(--display);
+      font-size: 1.35rem;
+      font-weight: 500;
+      letter-spacing: 0;
+      line-height: 1.15;
+    }
+
+    .driver {
+      display: grid;
+      grid-template-columns: 3.5rem minmax(0, 1fr) auto;
+      grid-template-areas:
+        "face who figs"
+        "meter meter meter";
+      gap: 0.15rem 0.75rem;
+      width: 100%;
+      text-align: left;
+      padding: 0.7rem 0.55rem 0.65rem;
+      background: transparent;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      border-radius: 0;
+      cursor: pointer;
+      color: var(--ink);
+      align-items: center;
+      transition: background-color 160ms var(--ease);
+    }
+
+    .driver:hover { background: var(--surface); }
+
+    .driver[aria-pressed="true"] { background: oklch(0.78 0.13 128 / 0.14); }
+
+    .driver[aria-disabled="true"] {
+      opacity: 0.42;
+      cursor: not-allowed;
+    }
+
+    .driver[aria-disabled="true"]:hover { background: transparent; }
+
+    .face {
+      grid-area: face;
+      position: relative;
+      width: 3.25rem;
+      height: 3.25rem;
+      align-self: center;
+      flex: 0 0 auto;
+    }
+
+    .face .portrait {
+      width: 3.25rem;
+      height: 3.25rem;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 16%;
+      border: 2.5px solid #e2a325;
+      background: var(--surface-2);
+      display: block;
+    }
+
+    .face .crest {
+      position: absolute;
+      right: -0.32rem;
+      bottom: -0.08rem;
+      width: 1.45rem;
+      height: 1.45rem;
+      border-radius: 50%;
+      border: 2.5px solid #e2a325;
+      background: #fff;
+      object-fit: cover;
+      display: block;
+    }
+
+    .face .seat-no {
+      position: absolute;
+      top: -0.18rem;
+      left: -0.12rem;
+      width: 1.05rem;
+      height: 1.05rem;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: white;
+      border: 2px solid #e2a325;
+    }
+
+    .seat-no.a { background: var(--seat-a); }
+    .seat-no.b { background: var(--seat-b); }
+    .seat-no.c { background: var(--seat-c); }
+
+    .mark .face, .break .face {
+      width: 2.55rem;
+      height: 2.55rem;
+    }
+
+    .mark .face .portrait, .break .face .portrait {
+      width: 2.55rem;
+      height: 2.55rem;
+    }
+
+    .mark .face .crest, .break .face .crest {
+      width: 1.15rem;
+      height: 1.15rem;
+      right: -0.22rem;
+    }
+
+    .who { grid-area: who; min-width: 0; }
+
+    .surname {
+      display: block;
+      font-weight: 400;
+      letter-spacing: 0;
+      font-size: 1.18rem;
+      line-height: 1.1;
+      text-wrap: balance;
+    }
+
+    .forename {
+      display: block;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .figs {
+      grid-area: figs;
+      text-align: right;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      line-height: 1.35;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .own {
+      display: block;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .meta { display: block; color: var(--muted); }
+
+    .meter {
+      grid-area: meter;
+      height: 3px;
+      margin: 0.4rem 0 0.15rem;
+      background: oklch(0.30 0.03 130);
+    }
+
+    .meter span {
+      display: block;
+      height: 100%;
+      width: var(--w, 0%);
+      background: var(--primary);
+      transform-origin: left center;
+    }
+
+    .empty-list {
+      margin: 1rem 0;
+      color: var(--muted);
+    }
+
+    .slip {
+      position: sticky;
+      top: 1rem;
+      max-height: calc(100vh - 2rem);
+      overflow: auto;
+      background: var(--slip);
+      color: var(--slip-ink);
+      padding: clamp(1.15rem, 2vw, 1.6rem);
+      border-radius: 0;
+    }
+
+    .slip h2 {
+      margin: 1.35rem 0 0.55rem;
+      font-family: var(--display);
+      font-size: 1.2rem;
+      font-weight: 500;
+      letter-spacing: 0;
+      line-height: 1.15;
+      text-wrap: balance;
+    }
+
+    .slip h2:first-of-type { margin-top: 0.35rem; }
+
+    .form-id {
+      margin: 0;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--slip-muted);
+    }
+
+    .marks {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .marks li { min-height: 3rem; }
+
+    .mark, .open-mark {
+      display: grid;
+      grid-template-columns: 1.7rem minmax(0, 1fr) auto;
+      gap: 0.65rem;
+      align-items: center;
+      width: 100%;
+      min-height: 3rem;
+      padding: 0.35rem 0.4rem;
+      background: transparent;
+      border: 1px solid var(--slip-line);
+      color: var(--slip-ink);
+      text-align: left;
+    }
+
+    .mark { cursor: pointer; }
+    .mark:hover { background: oklch(0.94 0.02 128); }
+
+    .open-mark { color: var(--slip-muted); border-style: dashed; }
+
+    .chip {
+      width: 1.7rem;
+      height: 1.7rem;
+      display: grid;
+      place-items: center;
+      color: white;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .chip.a { background: var(--seat-a); }
+    .chip.b { background: var(--seat-b); }
+    .chip.c { background: var(--seat-c); }
+
+    .mark strong, .open-mark strong {
+      display: block;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    .mark small, .open-mark small {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--slip-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .remove-word {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--slip-muted);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.75rem;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      min-height: 2.5rem;
+      padding: 0.4rem 0.85rem;
+      cursor: pointer;
+      background: var(--primary-deep);
+      color: white;
+    }
+
+    .btn:hover { background: oklch(0.32 0.07 130); }
+
+    .btn.quiet {
+      background: transparent;
+      color: var(--slip-ink);
+      border: 1px solid var(--slip-line);
+    }
+
+    .btn.quiet:hover { background: oklch(0.94 0.02 128); }
+
+    .calc { margin-top: 1.2rem; }
+
+    .fraction { width: 100%; }
+
+    .num, .den {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.35rem 0.45rem;
+      width: 100%;
+    }
+
+    .den {
+      border-top: 1.5px solid var(--slip-ink);
+      margin-top: 0.45rem;
+      padding-top: 0.5rem;
+    }
+
+    .addend, .op {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 4.2rem;
+      text-align: center;
+    }
+
+    .op {
+      min-width: 0.8rem;
+      font-family: var(--mono);
+      align-self: center;
+    }
+
+    .val {
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 0.92rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .addend .who {
+      font-size: 0.72rem;
+      color: var(--slip-muted);
+      max-width: 7.2rem;
+      line-height: 1.2;
+    }
+
+    .quotient {
+      margin: 0.85rem 0 0;
+      font-family: var(--mono);
+      font-weight: 600;
+      font-size: clamp(1.7rem, 3vw, 2.15rem);
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      font-variant-numeric: tabular-nums;
+      text-wrap: balance;
+    }
+
+    .quotient small {
+      display: block;
+      margin-top: 0.2rem;
+      max-width: 22ch;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0;
+      color: var(--slip-muted);
+      text-wrap: pretty;
+    }
+
+    .quotient.tick { animation: rise 220ms var(--ease); }
+
+    @keyframes rise {
+      from { opacity: 0.4; transform: translateY(3px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    .rank, .preview, .note {
+      margin: 0.55rem 0 0;
+      color: var(--slip-muted);
+      font-size: 0.95rem;
+      max-width: 42ch;
+      text-wrap: pretty;
+    }
+
+    .preview { color: var(--slip-ink); }
+
+    .ratio-track {
+      margin-top: 0.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .track {
+      height: 14px;
+      background: oklch(0.92 0.015 128);
+      display: flex;
+      width: 100%;
+    }
+
+    .track i {
+      display: block;
+      height: 100%;
+      width: var(--w);
+    }
+
+    .track.ghost { outline: 1px solid var(--slip-line); background: transparent; }
+    .track.ghost i { background: oklch(0.86 0.02 130); }
+
+    .bar-a { background: var(--bar-a); }
+    .bar-b { background: var(--bar-b); }
+    .bar-c { background: var(--bar-c); }
+
+    .track-key {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--slip-muted);
+    }
+
+    .breaks { display: flex; flex-direction: column; gap: 0.85rem; }
+
+    .break {
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--slip-line);
+    }
+
+    .break header {
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+    }
+
+    .break h3 {
+      margin: 0;
+      font-family: var(--display);
+      font-size: 1.05rem;
+      font-weight: 500;
+      letter-spacing: 0;
+      text-wrap: balance;
+    }
+
+    .break header p {
+      margin: 0;
+      color: var(--slip-muted);
+      font-size: 0.88rem;
+    }
+
+    dl.facts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.45rem 0.8rem;
+      margin: 0.55rem 0 0;
+    }
+
+    dl.facts div { min-width: 0; }
+
+    dl.facts dt {
+      margin: 0;
+      color: var(--slip-muted);
+      font-size: 0.78rem;
+    }
+
+    dl.facts dd {
+      margin: 0.1rem 0 0;
+      font-family: var(--mono);
+      font-size: 0.92rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .gap {
+      margin: 0.45rem 0 0;
+      font-size: 0.92rem;
+    }
+
+    .gap.up { color: oklch(0.36 0.08 140); }
+    .gap.down { color: oklch(0.38 0.12 35); }
+
+    .hist {
+      position: relative;
+      height: 72px;
+      display: flex;
+      align-items: end;
+      gap: 2px;
+      margin-top: 0.4rem;
+    }
+
+    .hist span {
+      flex: 1;
+      background: oklch(0.78 0.04 130);
+      min-height: 1px;
+      height: var(--h);
+    }
+
+    .needle {
+      position: absolute;
+      top: -4px;
+      bottom: 0;
+      width: 2px;
+      background: var(--primary-deep);
+      transform: translateX(-50%);
+      left: var(--x);
+    }
+
+    .needle::after {
+      content: "";
+      position: absolute;
+      top: -3px;
+      left: 50%;
+      width: 7px;
+      height: 7px;
+      background: var(--primary-deep);
+      transform: translateX(-50%) rotate(45deg);
+    }
+
+    .axis {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-top: 0.3rem;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--slip-muted);
+    }
+
+    .method {
+      padding: 0 0 4rem;
+      border-top: 1px solid var(--line);
+      margin-top: 0.5rem;
+    }
+
+    .method-inner { padding-top: 2rem; }
+
+    .method h2 {
+      margin: 0 0 0.75rem;
+      font-family: var(--display);
+      font-size: clamp(1.6rem, 3vw, 2.15rem);
+      font-weight: 500;
+      letter-spacing: 0;
+      line-height: 1.1;
+      text-wrap: balance;
+      max-width: 22ch;
+    }
+
+    .method p, .method li {
+      color: var(--muted);
+      text-wrap: pretty;
+    }
+
+    .method strong { color: var(--ink); font-weight: 680; }
+
+    .formula-words {
+      font-family: var(--mono);
+      font-size: 0.92rem;
+      color: var(--ink) !important;
+      background: var(--surface);
+      padding: 0.85rem 1rem;
+      line-height: 1.45;
+    }
+
+    .example {
+      margin-top: 1rem;
+      color: var(--muted);
+    }
+
+    .example strong { color: var(--ink); }
+
+    footer {
+      padding: 0 0 2.5rem;
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      text-align: center;
+    }
+
+    .live {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      border: 0;
+    }
+
+    noscript p {
+      margin: 1rem auto;
+      width: min(1120px, calc(100% - 2rem));
+      color: var(--ink);
+    }
+
+    @media (max-width: 860px) {
+      main { grid-template-columns: 1fr; }
+      .slip {
+        position: static;
+        max-height: none;
+        overflow: visible;
+        order: -1;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <noscript>
+    <p>This page needs JavaScript to score a trio. The ratio is projected Las Vegas GP points divided by total price in millions.</p>
+  </noscript>
+  <p class="live" id="live" aria-live="polite"></p>
+  <header class="top wrap">
+    <div class="title-lockup">
+      <img class="title-logo" src="images/logo/2026_F1_ETG_LASVEGAS_Sponsor_PODIUM_Negative.webp" alt="" width="600" height="54">
+      <h1 class="page-title"><span class="page-title-main">2026 MTA Data Analytics Case Competition</span><span class="page-title-event">&amp; Team <i>Pole Positio Pole Position Pole Position</i> </span></h1>
+    </div>
+    <p class="lede">Predicted point-to-cost ratio for the Las Vegas GP: the selected drivers’ projected points, divided by their total price. Any three names. No constructor cap.</p>
+  </header>
+  <main class="wrap">
+    <section aria-labelledby="card-title">
+      <h2 id="card-title" class="section-title">Drivers</h2>
+      <div class="tools">
+        <input class="search" id="search" type="search" placeholder="Search a driver" autocomplete="off" spellcheck="false" aria-label="Search drivers">
+        <div class="sort" role="group" aria-label="Sort drivers">
+          <div class="sort-item is-on" data-key="value">
+            <button type="button" class="sort-key" data-sort="value" aria-pressed="true">Value</button>
+            <button type="button" class="sort-flip" data-flip="value" data-dir="desc" aria-pressed="true" aria-label="Value, most to least. Click for least to most.">
+              <svg class="arrow" viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M10 3v14M10 17l-5.5-5.5M10 17l5.5-5.5"/></svg>
+              <span class="flip-word">most</span>
+            </button>
+          </div>
+          <div class="sort-item" data-key="points">
+            <button type="button" class="sort-key" data-sort="points" aria-pressed="false">Projected Points</button>
+            <button type="button" class="sort-flip" data-flip="points" data-dir="desc" aria-pressed="false" aria-label="Projected Points, most to least. Click for least to most.">
+              <svg class="arrow" viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M10 3v14M10 17l-5.5-5.5M10 17l5.5-5.5"/></svg>
+              <span class="flip-word">most</span>
+            </button>
+          </div>
+          <div class="sort-item" data-key="price">
+            <button type="button" class="sort-key" data-sort="price" aria-pressed="false">Price</button>
+            <button type="button" class="sort-flip" data-flip="price" data-dir="asc" aria-pressed="false" aria-label="Price, least to most. Click for most to least.">
+              <svg class="arrow" viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M10 3v14M10 17l-5.5-5.5M10 17l5.5-5.5"/></svg>
+              <span class="flip-word">least</span>
+            </button>
+          </div>
+          <div class="sort-item" data-key="name">
+            <button type="button" class="sort-key" data-sort="name" aria-pressed="false">Name</button>
+            <button type="button" class="sort-flip" data-flip="name" data-dir="asc" aria-pressed="false" aria-label="Name, A to Z. Click for Z to A.">
+              <svg class="arrow" viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M10 3v14M10 17l-5.5-5.5M10 17l5.5-5.5"/></svg>
+              <span class="flip-word">A–Z</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <p class="hint" id="hint">Click an arrow to switch most and least. Value sorts each driver alone — their projected points divided by their own price. The slip uses a different formula: combined points divided by combined price.</p>
+      <p class="list-status" id="list-status"></p>
+      <div class="drivers" id="drivers" role="group" aria-label="Select three drivers"></div>
+    </section>
+    <aside class="slip" aria-labelledby="slip-title">
+      <p class="form-id">Las Vegas GP · three-driver form</p>
+      <h2 id="slip-title">Lineup slip</h2>
+      <ol class="marks" id="marks"></ol>
+      <div class="actions">
+        <button type="button" class="btn" id="best">Best ratio shortcut</button>
+        <button type="button" class="btn quiet" id="clear">Clear</button>
+      </div>
+      <div class="calc" aria-live="off">
+        <div class="fraction" id="fraction"></div>
+        <p class="quotient" id="quotient">Select three drivers<small>Points ÷ total price, in millions</small></p>
+      </div>
+      <p class="preview" id="preview" hidden></p>
+      <p class="rank" id="rank"></p>
+      <h2>Breakdown</h2>
+      <p class="note" id="break-note">Each driver’s contribution is their projected points divided by the trio’s total price. Those three numbers add up to the ratio.</p>
+      <div id="breakdown"></div>
+      <h2 id="field-title">All trios</h2>
+      <p class="note">Every legal combination, scored with the same formula. The marker is your trio.</p>
+      <div class="hist" id="hist" aria-hidden="true"></div>
+      <div class="axis" id="axis"></div>
+      <p class="rank" id="field-note"></p>
+    </aside>
+  </main>
+  <section class="method wrap" id="method">
+    <div class="method-inner">
+      <h2>How the ratio is calculated</h2>
+      <p>The predicted point-to-cost ratio is the selected drivers’ predicted Las Vegas GP points divided by their total price.</p>
+      <p class="formula-words">Ratio = (points₁ + points₂ + points₃) / (price₁ + price₂ + price₃)</p>
+      <p>Points are each driver’s <strong>projected Las Vegas GP points</strong> from the case file <strong>vegas_website_driver_data.csv</strong>. Prices are the case <strong>price_millions</strong> figures. A price of 60 is $60 million. Nothing is rescaled.</p>
+      <p>Several point totals are fractional — 12.6667, 0.1667, 4.3333. Those are expected points, an average across race scenarios, not a single finishing place. This page does not invent a second points model. It applies the case formula to those supplied forecasts.</p>
+      <p>On the slip, a driver’s <strong>contribution</strong> is their projected points divided by the trio’s total price. The three contributions sum to the ratio. A driver’s own points-per-million is shown as well, but own ratios are not added together. That would be a different number, and it is not the case formula.</p>
+      <p>The yield gap is share of the trio’s points minus share of the trio’s price. Positive means that driver is pulling this trio’s ratio up relative to the other two. It can disagree with a high own ratio: a good-value driver can still dilute an even cheaper trio.</p>
+      <p>Rank compares the finished trio with all <span id="combo-count">possible</span> combinations of three drivers, using the same division. Displayed figures are rounded. The ratio itself uses full precision.</p>
+      <div class="example" id="example"></div>
+    </div>
+  </section>
+  <footer class="wrap">Prices and projected points from vegas_website_driver_data.csv · Las Vegas GP</footer>
+  <script>
+    let DRIVERS = [];
+    let byId = new Map();
+    let TRIOS = [];
+    let BEST = null;
+    let MIN_R = 0;
+    let MAX_R = 0;
+    let MAX_OWN = 1;
+    const SEATS = ["a", "b", "c"];
+    const TEAMS = {
+      ferrari: { name: "Ferrari", file: "ferrari.svg" },
+      mercedes: { name: "Mercedes", file: "mercedes.svg" },
+      mclaren: { name: "McLaren", file: "mclaren.svg" },
+      redbull: { name: "Red Bull", file: "redbull.svg" },
+      aston: { name: "Aston Martin", file: "aston.svg" },
+      williams: { name: "Williams", file: "williams.svg" },
+      alpine: { name: "Alpine", file: "alpine.svg" },
+      haas: { name: "Haas", file: "haas.svg" },
+      bulls: { name: "Racing Bulls", file: "bulls.svg" },
+      audi: { name: "Audi", file: "audi.svg" },
+      cadillac: { name: "Cadillac", file: "cadillac.svg" }
+    };
+    const DRIVER_TEAM = {
+      1: "ferrari",
+      4: "aston",
+      807: "audi",
+      815: "cadillac",
+      822: "cadillac",
+      830: "redbull",
+      832: "williams",
+      840: "aston",
+      842: "alpine",
+      844: "ferrari",
+      846: "mclaren",
+      847: "mercedes",
+      848: "williams",
+      857: "mclaren",
+      859: "bulls",
+      860: "haas",
+      861: "alpine",
+      863: "mercedes",
+      864: "audi",
+      865: "redbull",
+      876: "bulls"
+    };
+
+    function teamOf(d) {
+      return TEAMS[DRIVER_TEAM[d.id]] || { name: "", file: "" };
+    }
+
+    function faceHtml(d, seat) {
+      const team = teamOf(d);
+      const mark = seat >= 0 ? `<span class="seat-no ${SEATS[seat]}">${seat + 1}</span>` : "";
+      const crest = team.file
+        ? `<img class="crest" src="images/teams/${team.file}" alt="${esc(team.name)}">`
+        : "";
+      return `<span class="face">${mark}<img class="portrait" src="images/drivers/${d.id}.jpg" alt="" style="object-position:${d.face || "center 16%"}">${crest}</span>`;
+    }
+    const BARS = ["bar-a", "bar-b", "bar-c"];
+
+    function ownRatio(d) {
+      return d.points / d.price;
+    }
+
+    function score(list) {
+      const points = list.reduce((s, d) => s + d.points, 0);
+      const price = list.reduce((s, d) => s + d.price, 0);
+      return { points, price, ratio: price === 0 ? 0 : points / price };
+    }
+
+    function triosOf(drivers) {
+      const out = [];
+      for (let i = 0; i < drivers.length; i++) {
+        for (let j = i + 1; j < drivers.length; j++) {
+          for (let k = j + 1; k < drivers.length; k++) {
+            const list = [drivers[i], drivers[j], drivers[k]];
+            const s = score(list);
+            out.push({ ids: list.map((d) => d.id).sort((a, b) => a - b), ...s });
+          }
+        }
+      }
+      return out;
+    }
+
+    function rankOf(ratio) {
+      let better = 0;
+      let tied = 0;
+      for (const t of TRIOS) {
+        if (t.ratio > ratio + 1e-9) better++;
+        else if (Math.abs(t.ratio - ratio) <= 1e-9) tied++;
+      }
+      return { place: better + 1, tied, better, behind: TRIOS.length - better - tied };
+    }
+
+    function fmtPts(n) {
+      return n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 4 });
+    }
+
+    function fmtRatio(n) {
+      return n.toLocaleString("en-US", { minimumFractionDigits: 3, maximumFractionDigits: 4 });
+    }
+
+    function fmtPrice(n) {
+      return "$" + n + "M";
+    }
+
+    function esc(s) {
+      return String(s).replace(/[&<>"']/g, (c) => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      }[c]));
+    }
+
+    function norm(s) {
+      return s.toLowerCase().normalize("NFD").replace(/\p{M}/gu, "");
+    }
+
+    let selected = [];
+    let sortKey = "value";
+    const sortDir = { value: "desc", points: "desc", price: "asc", name: "asc" };
+    const SORT_LABEL = { value: "Value", points: "Points", price: "Price", name: "Name" };
+    let query = "";
+    let hoverId = null;
+
+    const driversEl = document.getElementById("drivers");
+    const marksEl = document.getElementById("marks");
+    const fractionEl = document.getElementById("fraction");
+    const quotientEl = document.getElementById("quotient");
+    const rankEl = document.getElementById("rank");
+    const previewEl = document.getElementById("preview");
+    const breakdownEl = document.getElementById("breakdown");
+    const breakNote = document.getElementById("break-note");
+    const listStatus = document.getElementById("list-status");
+    const hint = document.getElementById("hint");
+    const live = document.getElementById("live");
+    const fieldNote = document.getElementById("field-note");
+    const axis = document.getElementById("axis");
+
+    function persist() {
+      try { sessionStorage.setItem("vegas-card-marks", JSON.stringify(selected)); } catch (_) {}
+    }
+
+    function bestLabel() {
+      return BEST.ids.map((id) => byId.get(id).surname).join(", ");
+    }
+
+    function picked() {
+      return selected.map((id) => byId.get(id));
+    }
+
+    function renderList() {
+      const q = norm(query.trim());
+      const rows = DRIVERS.filter((d) => {
+        if (!q) return true;
+        return norm(d.forename + " " + d.surname).includes(q);
+      });
+      rows.sort((a, b) => {
+        const dir = sortDir[sortKey] === "asc" ? 1 : -1;
+        const name = a.surname.localeCompare(b.surname) || a.forename.localeCompare(b.forename);
+        if (sortKey === "name") return name * dir;
+        if (sortKey === "points") return (a.points - b.points) * dir || name;
+        if (sortKey === "price") return (a.price - b.price) * dir || name;
+        return (ownRatio(a) - ownRatio(b)) * dir || name;
+      });
+      const full = selected.length === 3;
+      const active = document.activeElement && document.activeElement.dataset
+        ? document.activeElement.dataset.id
+        : null;
+      listStatus.textContent = (q ? rows.length + " match" + (rows.length === 1 ? "" : "es") : DRIVERS.length + " drivers")
+        + " · " + selected.length + " of 3 marked";
+      if (!rows.length) {
+        driversEl.innerHTML = '<p class="empty-list">No driver matches that name. Clear the search and try a surname.</p>';
+        return;
+      }
+      driversEl.innerHTML = rows.map((d) => {
+        const seat = selected.indexOf(d.id);
+        const on = seat >= 0;
+        const locked = full && !on;
+        const w = Math.max(0, Math.min(100, (ownRatio(d) / MAX_OWN) * 100));
+        const team = teamOf(d);
+        return `<button type="button" class="driver" data-id="${d.id}" aria-pressed="${on}" ${locked ? 'aria-disabled="true"' : 'aria-disabled="false"'} ${on ? `data-seat="${seat}"` : ""} aria-label="${esc(d.forename + " " + d.surname)}, ${esc(team.name)}, ${fmtPts(d.points)} projected points, ${fmtPrice(d.price)}, own ratio ${fmtRatio(ownRatio(d))}${on ? ", marked " + (seat + 1) : ""}">
+          ${faceHtml(d, on ? seat : -1)}
+          <span class="who"><span class="surname">${esc(d.surname)}</span><span class="forename">${esc(d.forename)}${team.name ? " · " + esc(team.name) : ""}</span></span>
+          <span class="figs"><span class="own">${fmtRatio(ownRatio(d))}</span><span class="meta">${fmtPrice(d.price)} · ${fmtPts(d.points)} pts</span></span>
+          <span class="meter" title="Own points per million, scaled to the best single driver"><span style="--w:${w.toFixed(2)}%"></span></span>
+        </button>`;
+      }).join("");
+      if (active) {
+        const el = driversEl.querySelector(`[data-id="${active}"]`);
+        if (el) el.focus();
+      }
+    }
+
+    function addend(value, who) {
+      return `<span class="addend"><span class="val">${esc(value)}</span><span class="who">${esc(who)}</span></span>`;
+    }
+
+    function renderFraction(list) {
+      const slots = [0, 1, 2].map((i) => list[i] || null);
+      const nums = slots.map((d) => d ? addend(fmtPts(d.points), d.surname) : addend("—", "open")).join('<span class="op">+</span>');
+      const dens = slots.map((d) => d ? addend(fmtPrice(d.price), "price") : addend("—", "price")).join('<span class="op">+</span>');
+      fractionEl.innerHTML = `<div class="num">${nums}</div><div class="den">${dens}</div>`;
+    }
+
+    function renderBreakdown(list) {
+      if (list.length < 3) {
+        breakdownEl.innerHTML = "";
+        breakNote.textContent = list.length
+          ? "Mark three drivers. Contribution is each driver’s points divided by the trio’s total price, and those contributions sum to the ratio."
+          : "Each driver’s contribution is their projected points divided by the trio’s total price. Those three numbers add up to the ratio.";
+        return;
+      }
+      const s = score(list);
+      breakNote.textContent = "Contribution = that driver’s projected points ÷ the trio’s total price. The three contributions sum to the ratio. Own ratio is points ÷ that driver’s own price, and is not added.";
+      const parts = list.map((d, i) => {
+        const contribution = d.points / s.price;
+        const pointShare = s.points === 0 ? 0 : d.points / s.points;
+        const costShare = d.price / s.price;
+        const gap = pointShare - costShare;
+        const gapClass = gap > 0.005 ? "up" : gap < -0.005 ? "down" : "";
+        const gapText = gap > 0.005
+          ? "Pulls this trio’s ratio up"
+          : gap < -0.005
+            ? "Dilutes this trio’s ratio"
+            : "Nearly neutral in this trio";
+        return `<article class="break">
+          <header>
+            ${faceHtml(d, i)}
+            <div><h3>${esc(d.surname)}</h3><p>${esc(d.forename)}${teamOf(d).name ? " · " + esc(teamOf(d).name) : ""}</p></div>
+          </header>
+          <dl class="facts">
+            <div><dt>Projected points</dt><dd>${fmtPts(d.points)}</dd></div>
+            <div><dt>Price</dt><dd>${fmtPrice(d.price)}</dd></div>
+            <div><dt>Contribution to ratio</dt><dd>${fmtRatio(contribution)}</dd></div>
+            <div><dt>Own points / price</dt><dd>${fmtRatio(ownRatio(d))}</dd></div>
+            <div><dt>Share of points</dt><dd>${(pointShare * 100).toFixed(1)}%</dd></div>
+            <div><dt>Share of price</dt><dd>${(costShare * 100).toFixed(1)}%</dd></div>
+          </dl>
+          <p class="gap ${gapClass}">${gapText}. Yield gap ${(gap * 100).toFixed(1)} points of share.</p>
+        </article>`;
+      }).join("");
+      const widths = list.map((d) => (s.points === 0 ? 0 : (d.points / s.points) * 100));
+      const yourWidth = MAX_R === 0 ? 0 : (s.ratio / MAX_R) * 100;
+      const segs = list.map((d, i) => `<i class="${BARS[i]}" style="--w:${widths[i].toFixed(3)}%"></i>`).join("");
+      breakdownEl.innerHTML = `
+        <div class="ratio-track">
+          <div class="track" style="width:${Math.max(yourWidth, 0).toFixed(3)}%">${segs}</div>
+          <div class="track ghost" style="width:100%"></div>
+          <div class="track-key"><span>Your ratio ${fmtRatio(s.ratio)}</span><span>Best ${fmtRatio(MAX_R)}</span></div>
+        </div>
+        <p class="note">${list.map((d) => fmtPts(d.points)).join(" + ")} = ${fmtPts(s.points)} points. ${list.map((d) => d.price).join(" + ")} = ${s.price} million. ${fmtPts(s.points)} / ${s.price} = ${fmtRatio(s.ratio)}. Contributions ${list.map((d) => fmtRatio(d.points / s.price)).join(" + ")}.</p>
+        ${parts}`;
+    }
+
+    function updatePreview() {
+      const list = picked();
+      const hover = hoverId != null && !selected.includes(hoverId) ? byId.get(hoverId) : null;
+      if (hover && list.length < 3) {
+        const trial = list.concat(hover);
+        const s = score(trial);
+        previewEl.hidden = false;
+        previewEl.textContent = trial.length === 3
+          ? `With ${hover.surname}, the ratio would be ${fmtRatio(s.ratio)} points per $M.`
+          : `Adding ${hover.surname} makes a ${trial.length}-driver set at ${fmtRatio(s.ratio)} points per $M. The slip still waits for three.`;
+      } else {
+        previewEl.hidden = true;
+        previewEl.textContent = "";
+      }
+    }
+
+    function renderSlip() {
+      const list = picked();
+      marksEl.innerHTML = [0, 1, 2].map((i) => {
+        const d = list[i];
+        if (!d) {
+          return `<li><div class="open-mark"><span class="chip ${SEATS[i]}">${i + 1}</span><span><strong>Open mark</strong><small>Click a driver</small></span></div></li>`;
+        }
+        return `<li><button type="button" class="mark" data-remove="${d.id}"><span class="chip ${SEATS[i]}">${i + 1}</span><span><strong>${esc(d.surname)}</strong><small>${esc(d.forename)} · ${fmtPrice(d.price)} · ${fmtPts(d.points)} pts</small></span><span class="remove-word">Remove</span></button></li>`;
+      }).join("");
+      renderFraction(list);
+      const next = quotientEl.textContent;
+      if (list.length === 3) {
+        const s = score(list);
+        const r = rankOf(s.ratio);
+        quotientEl.innerHTML = `${fmtRatio(s.ratio)}<small>${fmtPts(s.points)} projected points ÷ ${s.price} million</small>`;
+        const tie = r.tied > 1 ? ` Tied with ${r.tied - 1} other trio${r.tied === 2 ? "" : "s"}.` : "";
+        rankEl.textContent = r.place === 1
+          ? `Best of ${TRIOS.length.toLocaleString("en-US")} trios.${tie}`
+          : `${r.place}${ordinal(r.place)} of ${TRIOS.length.toLocaleString("en-US")} trios. ${r.better.toLocaleString("en-US")} score higher.${tie}`;
+        fieldNote.textContent = `Your mark is at ${fmtRatio(s.ratio)}. The field runs from ${fmtRatio(MIN_R)} to ${fmtRatio(MAX_R)}. Best is ${bestLabel()}.`;
+        placeNeedle(s.ratio);
+      } else {
+        const left = 3 - list.length;
+        quotientEl.innerHTML = `Select ${left} more<small>The ratio is scored only for a full trio of three</small>`;
+        rankEl.textContent = "";
+        fieldNote.textContent = `Field ratios run from ${fmtRatio(MIN_R)} to ${fmtRatio(MAX_R)}. Best is ${bestLabel()} at ${fmtRatio(MAX_R)}.`;
+        placeNeedle(null);
+      }
+      if (quotientEl.textContent !== next) {
+        quotientEl.classList.remove("tick");
+        void quotientEl.offsetWidth;
+        quotientEl.classList.add("tick");
+      }
+      updatePreview();
+      hint.textContent = list.length === 3
+        ? "Three marks filled. Remove one to change the trio. Value on the card is each driver alone; the slip is combined points over combined price."
+        : "Click an arrow to switch most and least. Value sorts each driver alone — their projected points divided by their own price. The slip uses a different formula: combined points divided by combined price.";
+      renderBreakdown(list);
+    }
+
+    function ordinal(n) {
+      const v = n % 100;
+      if (v >= 11 && v <= 13) return "th";
+      switch (n % 10) {
+        case 1: return "st";
+        case 2: return "nd";
+        case 3: return "rd";
+        default: return "th";
+      }
+    }
+
+    function buildHist() {
+      const bins = 36;
+      const counts = Array(bins).fill(0);
+      const span = MAX_R - MIN_R || 1;
+      for (const t of TRIOS) {
+        let idx = Math.floor(((t.ratio - MIN_R) / span) * bins);
+        if (idx >= bins) idx = bins - 1;
+        if (idx < 0) idx = 0;
+        counts[idx]++;
+      }
+      const peak = Math.max(...counts);
+      const hist = document.getElementById("hist");
+      hist.innerHTML = counts.map((c) => `<span style="--h:${(c / peak) * 100}%"></span>`).join("") + '<i class="needle" id="needle" hidden></i>';
+      axis.innerHTML = `<span>${fmtRatio(MIN_R)}</span><span>${fmtRatio(MAX_R)}</span>`;
+    }
+
+    function placeNeedle(ratio) {
+      const needle = document.getElementById("needle");
+      if (!needle) return;
+      if (ratio == null || MAX_R === MIN_R) {
+        needle.hidden = true;
+        return;
+      }
+      const x = ((ratio - MIN_R) / (MAX_R - MIN_R)) * 100;
+      needle.hidden = false;
+      needle.style.setProperty("--x", Math.max(0, Math.min(100, x)).toFixed(3) + "%");
+    }
+
+    function setSelected(ids) {
+      selected = ids.slice(0, 3);
+      persist();
+      renderList();
+      renderSlip();
+    }
+
+    function announceSelection() {
+      const list = picked();
+      if (list.length === 3) {
+        const s = score(list);
+        live.textContent = `Ratio ${fmtRatio(s.ratio)} points per million. ${list.map((d) => d.surname).join(", ")}.`;
+      } else {
+        live.textContent = `${list.length} of 3 drivers marked.`;
+      }
+    }
+
+    function toggle(id) {
+      const i = selected.indexOf(id);
+      if (i >= 0) selected.splice(i, 1);
+      else if (selected.length < 3) selected.push(id);
+      else return;
+      persist();
+      renderList();
+      renderSlip();
+      announceSelection();
+    }
+
+    driversEl.addEventListener("click", (e) => {
+      const btn = e.target.closest(".driver");
+      if (!btn || btn.getAttribute("aria-disabled") === "true") return;
+      toggle(Number(btn.dataset.id));
+    });
+
+    driversEl.addEventListener("mouseover", (e) => {
+      const btn = e.target.closest(".driver");
+      if (!btn) return;
+      const id = Number(btn.dataset.id);
+      if (id === hoverId) return;
+      hoverId = id;
+      updatePreview();
+    });
+
+    driversEl.addEventListener("mouseleave", () => {
+      hoverId = null;
+      updatePreview();
+    });
+
+    driversEl.addEventListener("focusin", (e) => {
+      const btn = e.target.closest(".driver");
+      if (!btn) return;
+      hoverId = Number(btn.dataset.id);
+      updatePreview();
+    });
+
+    driversEl.addEventListener("focusout", (e) => {
+      if (driversEl.contains(e.relatedTarget)) return;
+      hoverId = null;
+      updatePreview();
+    });
+
+    marksEl.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-remove]");
+      if (!btn) return;
+      toggle(Number(btn.dataset.remove));
+    });
+
+    document.getElementById("search").addEventListener("input", (e) => {
+      query = e.target.value;
+      renderList();
+    });
+
+    function dirPhrase(dir, key) {
+      if (key === "name") return dir === "asc" ? "A to Z" : "Z to A";
+      return dir === "desc" ? "most to least" : "least to most";
+    }
+
+    function flipWord(dir, key) {
+      if (key === "name") return dir === "asc" ? "A–Z" : "Z–A";
+      return dir === "desc" ? "most" : "least";
+    }
+
+    function syncSortButtons() {
+      document.querySelectorAll(".sort-item").forEach((item) => {
+        const key = item.dataset.key;
+        const on = key === sortKey;
+        const dir = sortDir[key];
+        const label = SORT_LABEL[key];
+        const phrase = dirPhrase(dir, key);
+        const other = key === "name"
+          ? (dir === "asc" ? "Z to A" : "A to Z")
+          : (dir === "desc" ? "least to most" : "most to least");
+        item.classList.toggle("is-on", on);
+        item.querySelector("[data-sort]").setAttribute("aria-pressed", String(on));
+        const flip = item.querySelector("[data-flip]");
+        flip.dataset.dir = dir;
+        flip.setAttribute("aria-pressed", String(on));
+        flip.querySelector(".flip-word").textContent = flipWord(dir, key);
+        flip.setAttribute("aria-label", `${label}, ${phrase}. Click for ${other}.`);
+      });
+    }
+
+    document.querySelectorAll("[data-sort]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        sortKey = btn.dataset.sort;
+        syncSortButtons();
+        renderList();
+        live.textContent = `Sorted by ${SORT_LABEL[sortKey]}, ${dirPhrase(sortDir[sortKey], sortKey)}.`;
+      });
+    });
+
+    document.querySelectorAll("[data-flip]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const key = btn.dataset.flip;
+        sortKey = key;
+        sortDir[key] = sortDir[key] === "asc" ? "desc" : "asc";
+        syncSortButtons();
+        renderList();
+        live.textContent = `Sorted by ${SORT_LABEL[key]}, ${dirPhrase(sortDir[key], key)}.`;
+      });
+    });
+
+    document.getElementById("best").addEventListener("click", () => {
+      if (!BEST) return;
+      const ordered = BEST.ids
+        .map((id) => byId.get(id))
+        .sort((a, b) => ownRatio(b) - ownRatio(a))
+        .map((d) => d.id);
+      setSelected(ordered);
+      live.textContent = `Best ratio marked. ${fmtRatio(BEST.ratio)} points per million.`;
+    });
+
+    document.getElementById("clear").addEventListener("click", () => {
+      setSelected([]);
+      live.textContent = "Marks cleared.";
+    });
+
+    function renderExample() {
+      const named = ["Verstappen", "Hamilton", "Leclerc"]
+        .map((surname) => DRIVERS.find((d) => d.surname === surname))
+        .filter(Boolean);
+      const sample = named.length === 3 ? named : DRIVERS.slice(0, 3);
+      if (sample.length < 3) return;
+      const s = score(sample);
+      document.getElementById("example").innerHTML = `<p><strong>Worked example, same function as the slip.</strong> ${sample.map((d) => `${esc(d.surname)} ${fmtPts(d.points)} pts at ${fmtPrice(d.price)}`).join(", ")}. Points sum to ${fmtPts(s.points)}. Price sums to ${s.price} million. Ratio = ${fmtPts(s.points)} / ${s.price} = ${fmtRatio(s.ratio)} points per million. Contributions: ${sample.map((d) => esc(d.surname) + " " + fmtRatio(d.points / s.price)).join(", ")}.</p>`;
+    }
+
+    function parseCsv(text) {
+      const rows = [];
+      let row = [];
+      let cell = "";
+      let quoted = false;
+      const src = text.replace(/^\uFEFF/, "");
+      for (let i = 0; i < src.length; i++) {
+        const c = src[i];
+        if (quoted) {
+          if (c === '"') {
+            if (src[i + 1] === '"') { cell += '"'; i++; }
+            else quoted = false;
+          } else cell += c;
+        } else if (c === '"') quoted = true;
+        else if (c === ",") { row.push(cell); cell = ""; }
+        else if (c === "\n") { row.push(cell); rows.push(row); row = []; cell = ""; }
+        else if (c !== "\r") cell += c;
+      }
+      if (cell.length || row.length) { row.push(cell); rows.push(row); }
+      const headers = rows[0].map((h) => h.trim());
+      return rows.slice(1).filter((r) => r.some((c) => c.trim())).map((cols) => {
+        const rec = {};
+        headers.forEach((h, i) => { rec[h] = (cols[i] ?? "").trim(); });
+        return {
+          id: Number(rec.driverId),
+          forename: rec.forename,
+          surname: rec.surname,
+          price: Number(rec.price_millions),
+          points: Number(rec.projected_points)
+        };
+      }).filter((d) => d.surname && Number.isFinite(d.id) && Number.isFinite(d.price) && Number.isFinite(d.points));
+    }
+
+    function useDrivers(list) {
+      DRIVERS = list;
+      byId = new Map(DRIVERS.map((d) => [d.id, d]));
+      TRIOS = triosOf(DRIVERS);
+      BEST = TRIOS.reduce((best, t) => {
+        if (!best || t.ratio > best.ratio) return t;
+        if (t.ratio === best.ratio && t.points > best.points) return t;
+        return best;
+      }, null);
+      MIN_R = TRIOS.length ? Math.min(...TRIOS.map((t) => t.ratio)) : 0;
+      MAX_R = BEST ? BEST.ratio : 0;
+      MAX_OWN = Math.max(1e-9, ...DRIVERS.map(ownRatio));
+      try {
+        const saved = JSON.parse(sessionStorage.getItem("vegas-card-marks") || "[]");
+        if (Array.isArray(saved)) selected = saved.filter((id) => byId.has(id)).slice(0, 3);
+      } catch (_) {}
+      const n = TRIOS.length.toLocaleString("en-US");
+      document.getElementById("field-title").textContent = `All ${n} trios`;
+      document.getElementById("combo-count").textContent = n;
+    }
+
+    function showLoadError(message) {
+      driversEl.innerHTML = `<p class="empty-list">${esc(message)}</p>`;
+      quotientEl.innerHTML = `CSV unavailable<small>${esc(message)}</small>`;
+    }
+
+    async function loadDrivers() {
+      listStatus.textContent = "Reading vegas_website_driver_data.csv";
+      const res = await fetch("vegas_website_driver_data.csv");
+      if (!res.ok) throw new Error("Could not read vegas_website_driver_data.csv (" + res.status + ").");
+      const list = parseCsv(await res.text());
+      if (list.length < 3) throw new Error("vegas_website_driver_data.csv needs at least three drivers.");
+      useDrivers(list);
+      buildHist();
+      renderExample();
+      if (location.hash === "#best") document.getElementById("best").click();
+      else { renderList(); renderSlip(); }
+    }
+
+    loadDrivers().catch((err) => {
+      showLoadError(err.message + " Serve this folder over http so the page can read the CSV.");
+    });
+  </script>
+</body>
 </html>
